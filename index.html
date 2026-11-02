@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>منصة البرمجة بلغة البايثون</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B2545;--blue:#13315C;--mid:#1F6FB2;--light:#8DB8E2;--pale:#EAF2FB;--text:#1d2b3a;--line:#c9dcef}
+body{margin:0;font-family:'Cairo',system-ui,sans-serif;color:var(--text);background:#f4f8fc;line-height:1.8}
+a{color:var(--mid)}a:hover{color:var(--navy)}
+button{font-family:inherit}
+details summary{cursor:pointer;list-style:none}
+details summary::-webkit-details-marker{display:none}
+.btn{display:inline-block;background:var(--mid);color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px}
+.btn:hover{background:var(--navy);color:#fff}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--pale)}
+.tab{background:transparent;border:0;color:#cfe3f7;padding:12px 16px;font-size:16px;font-weight:600;border-bottom:3px solid transparent;cursor:pointer}
+.tab:hover{color:#fff}
+.tab.on{color:#fff;border-bottom-color:var(--light)}
+.tab:focus-visible,.chip:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--light);outline-offset:2px}
+.chip{background:#fff;border:1px solid var(--line);color:var(--navy);padding:8px 16px;border-radius:999px;font-weight:600;cursor:pointer;font-size:15px}
+.chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:12px;box-shadow:0 1px 2px rgba(11,37,69,.05)}
+.card summary{padding:16px 20px;font-weight:700;color:var(--navy);font-size:18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card summary:after{content:"+";font-size:22px;color:var(--mid);line-height:1}
+.card[open] summary:after{content:"-"}
+.card .body{padding:14px 20px 18px;border-top:1px solid var(--line)}
+.card .body p{margin:0 0 6px}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;align-items:center}
+.links .lbl{font-weight:700;color:var(--navy);font-size:15px;margin-inline-end:4px}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 12px;border-radius:999px;margin-bottom:8px}
+.links a.tag{margin:0;text-decoration:none;padding:6px 14px;font-size:14px}
+.links a.tag:hover{filter:brightness(.95)}
+.t-en{background:#e3f4ea;color:#1b6b3a}.t-re{background:#fff4df;color:#8a5a00}.t-rm{background:#fde8ea;color:#9b1c2c}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.box h3{margin:0;color:var(--navy);font-size:18px}
+.box p{margin:0;font-size:15px;color:#4a5b6e}
+.box .links{margin-top:auto;padding-top:10px}
+h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
+.lead{color:#4a5b6e;margin:0 0 20px;font-size:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.section-title{color:var(--navy);font-size:20px;font-weight:700;margin:26px 0 12px;padding-inline-start:12px;border-inline-start:4px solid var(--mid)}
+@media (max-width:640px){.hero-title{font-size:28px!important}.tabs{overflow-x:auto;flex-wrap:nowrap!important}.tab{white-space:nowrap}}
+</style>
+
+<style>
+.pane{display:none} .pane.on{display:block}
+.group{display:none} .group.on{display:block}
+</style>
+</head>
+<body>
+
+
+
+<div style="width:100%;box-sizing:border-box">
+
+<header style="background:var(--navy);color:#fff;padding:36px 24px 0;position:relative;overflow:hidden" id="top">
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 1280 260" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.4" fill="none" stroke="#8DB8E2" stroke-width="2">
+    <defs><pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#8DB8E2" stroke="none"></circle></pattern></defs>
+    <rect width="1280" height="260" fill="url(#dots)" stroke="none" opacity=".35"></rect>
+    <rect x="70" y="40" width="150" height="44" rx="22"></rect>
+    <text x="145" y="68" text-anchor="middle" fill="#8DB8E2" stroke="none" font-family="Cairo, sans-serif" font-size="18">ابدأ</text>
+    <line x1="145" y1="84" x2="145" y2="110"></line>
+    <polygon points="145,110 215,140 145,170 75,140"></polygon>
+    <text x="145" y="146" text-anchor="middle" fill="#8DB8E2" stroke="none" font-family="monospace" font-size="16">x &gt; 0</text>
+    <line x1="145" y1="170" x2="145" y2="196"></line>
+    <rect x="95" y="196" width="100" height="40" rx="4"></rect>
+    <g fill="#8DB8E2" stroke="none" font-family="monospace" font-size="18">
+      <text x="1080" y="70">def main():</text>
+      <text x="1060" y="102">for i in range(5):</text>
+      <text x="1080" y="134">print(i)</text>
+      <text x="1060" y="166">if x &gt; 0:</text>
+      <text x="1080" y="198">x += 1</text>
+    </g>
+  </svg>
+  <div style="max-width:1100px;margin:0 auto;text-align:center">
+    <h1 class="hero-title" style="margin:0 0 8px;font-size:40px;font-weight:800;line-height:1.3">البرمجة بلغة البايثون</h1>
+    <p style="margin:0 0 4px;color:#cfe3f7;font-size:18px;font-weight:600">مقرر تقن 107</p>
+    <p style="margin:0 0 18px;color:var(--light);font-size:16px;font-weight:600">مدرسة العهد الزاهر الثانوية للبنات</p>
+    <nav class="tabs" aria-label="أقسام المنصة" style="display:flex;flex-wrap:wrap;gap:4px;border-top:1px solid #1f3d66">
+      <button class="tab" onclick="showTab('home')">الرئيسية</button>
+      <button class="tab" onclick="showTab('lessons')">الدروس</button>
+      <button class="tab" onclick="showTab('summaries')">الملخصات</button>
+      <button class="tab" onclick="showTab('videos')">شرح الدروس بالفيديو</button>
+      <button class="tab" onclick="showTab('acts')">الأنشطة</button>
+      <button class="tab" onclick="showTab('exams')">الامتحانات السابقة</button>
+    </nav>
+  </div>
+</header>
+
+<main style="max-width:1100px;margin:0 auto;padding:28px 24px 48px">
+
+<div class="pane" data-pane="home">
+  <section style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin-bottom:24px">
+    <h2 style="font-size:30px">أهلاً بكن في منصة مقرر البرمجة بلغة البايثون</h2>
+    <p class="lead" style="font-size:18px;color:var(--navy);margin:0 0 10px">مرحباً بكن يا طالباتي في مقرر تقن 107.</p>
+    <p class="lead" style="margin:0">هنا تجدن كل ما تحتجنه للمذاكرة في أي وقت: الدروس، والملخصات، وشرح الفيديو، والأنشطة، ونماذج الامتحانات السابقة.</p>
+  </section>
+
+  <section style="background:var(--pale);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:24px">
+    <h3 style="margin:0 0 6px;color:var(--navy);font-size:20px">عن المنصة</h3>
+    <p style="margin:0;color:var(--text)">منصة مرجعية بسيطة تساعدكن على مراجعة الدروس خطوة بخطوة. كل درس له فيديو شرح وملخص وثلاثة أنشطة بمستويات مختلفة.</p>
+  </section>
+
+  <div class="section-title">أقسام المنصة</div>
+  <div class="grid">
+    <div class="box"><h3>الدروس</h3><p>شرح كل درس مع فيديو وملخص وأنشطة.</p><div class="links"><button class="btn" style="border:0;cursor:pointer" onclick="showTab('lessons')">ابدئي بالدروس</button></div></div>
+    <div class="box"><h3>الملخصات</h3><p>ملخص مختصر لكل درس للمراجعة السريعة.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('summaries')">عرض الملخصات</button></div></div>
+    <div class="box"><h3>شرح الدروس بالفيديو</h3><p>فيديوهات جاهزة تشاهدينها أكثر من مرة.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('videos')">مشاهدة الفيديوهات</button></div></div>
+    <div class="box"><h3>الأنشطة</h3><p>تدريبات مصنفة حسب مستواك.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('acts')">عرض الأنشطة</button></div></div>
+    <div class="box"><h3>الامتحانات السابقة</h3><p>نماذج من الامتحانات النهائية مع الحلول.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('exams')">عرض النماذج</button></div></div>
+  </div>
+
+  <div class="section-title">أنواع الأنشطة</div>
+  <div class="grid">
+    <div class="box"><span class="tag t-en">إثرائي</span><p>للمتفوقات اللواتي يردن التحدي.</p></div>
+    <div class="box"><span class="tag t-re">تعزيزي</span><p>للتدريب وتثبيت المعلومة.</p></div>
+    <div class="box"><span class="tag t-rm">علاجي</span><p>للمراجعة إذا كانت المعلومة غير واضحة.</p></div>
+  </div>
+</div>
+
+<div class="pane" data-pane="lessons">
+  <h2>الدروس</h2>
+  <p class="lead">اضغطي على كل درس لعرض الفيديو والملخص وأنشطته الثلاثة: إثرائي وتعزيزي وعلاجي.</p>
+
+  <details class="card" open="">
+    <summary>الدرس 1: الخوارزميات والخرائط التدفقية</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1FHOSGiUhHIkrbCgBda_GlG704x0U_GwJ/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 2: أنواع البيانات</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="https://drive.google.com/file/d/1eVMh-rEOxnQICP2Klt3Mf4tdMz-AmMHd/view?usp=sharing" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1mmFJAZNu39RSAAT1xZZQs9atSuhQk_-R/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1h182LnXIn1fJouQdVyUxBFa1GX3cosaj/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 3: المتغيرات والثوابت</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/15nBPNqIKtPCFO14q9_dFklYDTYnXZfpL/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 4: جمل الإدخال والإخراج</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="https://drive.google.com/file/d/1sliCPBLOdK3mXdUAbiuU5HOTrr4BKVW0/view?usp=share_link" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1-14qLZ6T0wt-5_1yp5MkM64WUHxHroLP/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 5: الدوال المضمنة الخاصة بالأرقام</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1oVLJqVjIeNEDvYeay9DpfO6xihXZ0t86/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 6: العمليات الحسابية</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1MyCqM_Osrgc70B47fyCx1bpLfLHRIMjz/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1M9cdBshEpzs7F3NrHURaCoj__LdeOsHm/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 7: العوامل المنطقية</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1tc1Q-a_0Soc1_FzvOudh6_kvJmVFknXZ/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 8: القوائم</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="https://drive.google.com/file/d/1A2XdUI0n-kAbfOe59o0JWAZmqwqWi9CG/view?usp=sharing" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1tW86EH4OZl_S_2wI2mCvXpWOcybYzCLh/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1OpvA33ktbcfGLpXQMz224vfeS99Kha3R/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 9: الدوال الخاصة بالقوائم</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1ydlnwklf-_H7JrKmRaT1W_l21mrJdXhC/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 10: الجملة الشرطية if</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="https://drive.google.com/file/d/1T80r5d1o3hAiS5CCRt_UZOJpC3NXxXRB/view?usp=share_link" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1_UDrrWJRUh4s4fhKUY9gO06EKV_T7hQA/view?usp=sharing" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1k3PDRLKrudtES8k5m08vfwa9wC-hb550/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary>الدرس 11: الجملة التكرارية for - in range</summary>
+    <div class="body">
+      
+      <div class="links"><a class="btn" href="https://drive.google.com/file/d/1Ic7XhBsWrofmkRwkJugCrqlxGdZ3Sj3A/view?usp=sharing" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1vvgKUYdjnWnvSAoIs-eUEFJGnFMs8XtG/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1G8iMoTEjg8F4KKk68YIfSeyXJ_PesSu0/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
+    </div>
+  </details>
+</div>
+
+<div class="pane" data-pane="summaries">
+  <h2>الملخصات</h2>
+  <p class="lead">ملخصات مختصرة لكل درس للمراجعة السريعة قبل الاختبار.</p>
+  <div class="grid">
+    <div class="box"><h3>ملخص درس الخوارزميات والخرائط التدفقية</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1FHOSGiUhHIkrbCgBda_GlG704x0U_GwJ/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس أنواع البيانات</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1mmFJAZNu39RSAAT1xZZQs9atSuhQk_-R/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس المتغيرات والثوابت</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/15nBPNqIKtPCFO14q9_dFklYDTYnXZfpL/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس جمل الإدخال والإخراج</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1-14qLZ6T0wt-5_1yp5MkM64WUHxHroLP/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس الدوال المضمنة الخاصة بالأرقام</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1oVLJqVjIeNEDvYeay9DpfO6xihXZ0t86/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس العمليات الحسابية</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1MyCqM_Osrgc70B47fyCx1bpLfLHRIMjz/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس العوامل المنطقية</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1tc1Q-a_0Soc1_FzvOudh6_kvJmVFknXZ/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس القوائم</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1tW86EH4OZl_S_2wI2mCvXpWOcybYzCLh/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس الدوال الخاصة بالقوائم</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1ydlnwklf-_H7JrKmRaT1W_l21mrJdXhC/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس الجملة الشرطية if</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1_UDrrWJRUh4s4fhKUY9gO06EKV_T7hQA/view?usp=sharing" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+    <div class="box"><h3>ملخص درس الجملة التكرارية for - in range</h3><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1vvgKUYdjnWnvSAoIs-eUEFJGnFMs8XtG/view?usp=share_link" target="_blank" rel="noopener">تحميل الملخص</a></div></div>
+  </div>
+</div>
+
+<div class="pane" data-pane="videos">
+  <h2>شرح الدروس بالفيديو</h2>
+  <p class="lead">ملفات الفيديو الجاهزة لكل درس، يمكنك مشاهدتها أكثر من مرة.</p>
+  <div class="grid">
+    <div class="box"><h3>الدرس 1: الخوارزميات والخرائط التدفقية</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="#">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 2: أنواع البيانات</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="https://drive.google.com/file/d/1eVMh-rEOxnQICP2Klt3Mf4tdMz-AmMHd/view?usp=sharing" target="_blank" rel="noopener">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 3: المتغيرات والثوابت</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="#">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 4: جمل الإدخال والإخراج</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="https://drive.google.com/file/d/1sliCPBLOdK3mXdUAbiuU5HOTrr4BKVW0/view?usp=share_link" target="_blank" rel="noopener">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 5: الدوال المضمنة الخاصة بالأرقام</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="#">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 6: العمليات الحسابية</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="#">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 7: العوامل المنطقية</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="#">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 8: القوائم</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="https://drive.google.com/file/d/1A2XdUI0n-kAbfOe59o0JWAZmqwqWi9CG/view?usp=sharing" target="_blank" rel="noopener">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 9: الدوال الخاصة بالقوائم</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="#">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 10: الجملة الشرطية if</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="https://drive.google.com/file/d/1T80r5d1o3hAiS5CCRt_UZOJpC3NXxXRB/view?usp=sharing" target="_blank" rel="noopener">مشاهدة الفيديو</a></div></div>
+    <div class="box"><h3>الدرس 11: الجملة التكرارية for - in range</h3><p>مدة الفيديو: [ ] دقيقة</p><div class="links"><a class="btn" href="https://drive.google.com/file/d/1Ic7XhBsWrofmkRwkJugCrqlxGdZ3Sj3A/view?usp=sharing" target="_blank" rel="noopener">مشاهدة الفيديو</a></div></div>
+  </div>
+</div>
+
+<div class="pane" data-pane="acts">
+  <h2>الأنشطة</h2>
+  <p class="lead">لكل درس ثلاثة أنشطة: إثرائي للمتفوقات، وتعزيزي للتدريب، وعلاجي للمراجعة. اختاري التصنيف من الأزرار أدناه.</p>
+  <div class="chips" role="group" aria-label="تصفية الأنشطة">
+    <button class="chip" onclick="showFilter('all')">الكل</button>
+    <button class="chip" onclick="showFilter('enrich')">إثرائية</button>
+    <button class="chip" onclick="showFilter('reinf')">تعزيزية</button>
+    <button class="chip" onclick="showFilter('remed')">علاجية</button>
+  </div>
+
+  <div class="group" data-group="enrich">
+    <div class="section-title">أنشطة إثرائية</div>
+    <div class="grid">
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 1</span><h3>الخوارزميات</h3><p>تصميم خوارزمية وخريطة تدفقية لترتيب ثلاثة أرقام تصاعدياً.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 2</span><h3>أنواع البيانات</h3><p>برنامج يحدد نوع كل قيمة يدخلها المستخدم.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 3</span><h3>المتغيرات والثوابت</h3><p>برنامج يحسب مساحة الدائرة باستخدام ثابت π.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 4</span><h3>الإدخال والإخراج</h3><p>فاتورة بسيطة تطبع الاسم والمبلغ بتنسيق منظم.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 5</span><h3>الدوال المضمنة للأرقام</h3><p>برنامج يجمع أرقام عدد صحيح ويعرض ناتج الجمع باستخدام sum().</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 6</span><h3>العمليات الحسابية</h3><p>حساب الأس والجذر التربيعي لعدد وتقريب النتيجة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 7</span><h3>العوامل المنطقية</h3><p>برنامج يتحقق هل السنة كبيسة باستخدام العوامل المنطقية.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 8</span><h3>القوائم</h3><p>برنامج يحذف العناصر المكررة من قائمة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 9</span><h3>الدوال الخاصة بالقوائم</h3><p>برنامج يدير قائمة أسماء: إضافة وحذف وترتيب.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 10</span><h3>الجملة الشرطية if</h3><p>برنامج يصنف العمر (طفل، شاب، بالغ) بجمل if و elif و else.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 11</span><h3>الجملة التكرارية</h3><p>برنامج يطبع جدول الضرب لعدد يدخله المستخدم باستخدام for - in range.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+    </div>
+  </div>
+
+  <div class="group" data-group="reinf">
+    <div class="section-title">أنشطة تعزيزية</div>
+    <div class="grid">
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 1</span><h3>الخرائط التدفقية</h3><p>تمثيل خطوات حل مسألة بسيطة بخريطة تدفقية.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 2</span><h3>أنواع البيانات</h3><p>تصنيف قيم معطاة إلى int و float و str و bool.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 3</span><h3>المتغيرات والثوابت</h3><p>تمييز المتغير عن الثابت في أمثلة قصيرة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 4</span><h3>الإدخال والإخراج</h3><p>كتابة برنامج يطلب الاسم ويطبع رسالة ترحيب.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 5</span><h3>الدوال المضمنة للأرقام</h3><p>استخدام len و abs و round على أرقام محددة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 6</span><h3>العمليات الحسابية</h3><p>تطبيق أولوية العمليات الحسابية على تعبيرات مختلفة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 7</span><h3>العوامل المنطقية</h3><p>حل جداول الحقيقة للعوامل and و or و not.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 8</span><h3>القوائم</h3><p>تدريب على إضافة عناصر إلى القائمة وحذفها.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 9</span><h3>الدوال الخاصة بالقوائم</h3><p>تطبيق append() و insert() و remove() على قائمة معطاة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 10</span><h3>الجملة الشرطية if</h3><p>كتابة if-else لمعرفة هل العدد زوجي أو فردي.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-re">تعزيزي · الدرس 11</span><h3>الجملة التكرارية</h3><p>طباعة الأعداد من 1 إلى 10 ومن 10 إلى 1 بخطوة مختلفة في range.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+    </div>
+  </div>
+
+  <div class="group" data-group="remed">
+    <div class="section-title">أنشطة علاجية</div>
+    <div class="grid">
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 1</span><h3>الخوارزميات والخرائط التدفقية</h3><p>مراجعة رموز الخريطة: البداية والنهاية والشرط والمعالجة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 2</span><h3>أنواع البيانات</h3><p>مراجعة أنواع البيانات مع أمثلة من الحياة اليومية.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1h182LnXIn1fJouQdVyUxBFa1GX3cosaj/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 3</span><h3>المتغيرات والثوابت</h3><p>مراجعة قواعد تسمية المتغيرات وأمثلة عليها.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 4</span><h3>الإدخال والإخراج</h3><p>تدريب على تحويل القيمة المدخلة من نص إلى رقم.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 5</span><h3>الدوال المضمنة للأرقام</h3><p>مراجعة الفرق بين الدوال round() و abs() مع أمثلة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 6</span><h3>العمليات الحسابية</h3><p>مراجعة الفرق بين / و // و % مع أمثلة محلولة.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1M9cdBshEpzs7F3NrHURaCoj__LdeOsHm/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 7</span><h3>العوامل المنطقية</h3><p>مراجعة الفرق بين True و False في الشروط المنطقية.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 8</span><h3>القوائم</h3><p>مراجعة الفهرسة والوصول إلى عناصر القائمة بالرقم.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1OpvA33ktbcfGLpXQMz224vfeS99Kha3R/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 9</span><h3>الدوال الخاصة بالقوائم</h3><p>مراجعة الفرق بين append() و insert() مع مثال واضح.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 10</span><h3>الجملة الشرطية if</h3><p>مراجعة الفرق بين if و elif و else وترتيب تنفيذها.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1k3PDRLKrudtES8k5m08vfwa9wC-hb550/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 11</span><h3>الجملة التكرارية</h3><p>مراجعة معنى range(start, stop) ولماذا لا يشمل stop.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1G8iMoTEjg8F4KKk68YIfSeyXJ_PesSu0/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="pane" data-pane="exams">
+  <h2>الامتحانات النهائية السابقة</h2>
+  <p class="lead">نماذج من الاختبارات النهائية السابقة مع الحلول للمراجعة والتدريب.</p>
+  <details class="card" open="">
+    <summary>نموذج الامتحان النهائي 1</summary>
+    <div class="body"><p>نموذج أسئلة مع مفتاح الحل.</p><div class="links"><a class="btn" href="#">تحميل الأسئلة</a><a class="btn ghost" href="#">تحميل الحل</a></div></div>
+  </details>
+  <details class="card">
+    <summary>نموذج الامتحان النهائي 2</summary>
+    <div class="body"><p>نموذج أسئلة مع مفتاح الحل.</p><div class="links"><a class="btn" href="#">تحميل الأسئلة</a><a class="btn ghost" href="#">تحميل الحل</a></div></div>
+  </details>
+  <details class="card">
+    <summary>نموذج الامتحان النهائي 3</summary>
+    <div class="body"><p>نموذج أسئلة مع مفتاح الحل.</p><div class="links"><a class="btn" href="#">تحميل الأسئلة</a><a class="btn ghost" href="#">تحميل الحل</a></div></div>
+  </details>
+</div>
+
+</main>
+
+<footer style="background:var(--navy);color:#cfe3f7;padding:22px 24px;text-align:center;font-size:15px">
+  <p style="margin:0 0 4px;font-weight:700;color:#fff">إعداد: أ. رجاء خليل</p>
+  <p style="margin:0 0 4px">المقرر: تقن 107 البرمجة بلغة البايثون</p>
+  <p style="margin:0">العهد الزاهر الثانوية للبنات</p>
+  <p style="margin:10px 0 0"><a href="#top">العودة إلى أعلى الصفحة</a></p>
+</footer>
+
+</div>
+
+<script>
+function showTab(name){
+  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.dataset.pane === name));
+  document.querySelectorAll('nav.tabs .tab').forEach(b => {
+    const on = b.getAttribute('onclick') === "showTab('" + name + "')";
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on);
+  });
+  window.scrollTo(0, 0);
+}
+function showFilter(f){
+  document.querySelectorAll('.group').forEach(g => {
+    g.classList.toggle('on', f === 'all' || g.dataset.group === f);
+  });
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.toggle('on', c.getAttribute('onclick') === "showFilter('" + f + "')");
+  });
+}
+showTab('home');
+showFilter('all');
+</script>
+</body>
+</html>
