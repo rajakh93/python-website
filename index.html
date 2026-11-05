@@ -49,8 +49,9 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
 </style>
 
 <style>
-.pane{display:none} .pane.on{display:block}
-.group{display:none} .group.on{display:block}
+[hidden]{display:none!important}
+.tab.on{background:var(--mid);color:#fff}
+.chip.on{background:var(--navy);color:#fff}
 </style>
 </head>
 <body>
@@ -83,19 +84,19 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <p style="margin:0 0 4px;color:#cfe3f7;font-size:18px;font-weight:600">مقرر تقن 107</p>
     <p style="margin:0 0 18px;color:var(--light);font-size:16px;font-weight:600">مدرسة العهد الزاهر الثانوية للبنات</p>
     <nav class="tabs" aria-label="أقسام المنصة" style="display:flex;flex-wrap:wrap;gap:4px;border-top:1px solid #1f3d66">
-      <button class="tab" onclick="showTab('home')">الرئيسية</button>
-      <button class="tab" onclick="showTab('lessons')">الدروس</button>
-      <button class="tab" onclick="showTab('summaries')">الملخصات</button>
-      <button class="tab" onclick="showTab('videos')">شرح الدروس بالفيديو</button>
-      <button class="tab" onclick="showTab('acts')">الأنشطة</button>
-      <button class="tab" onclick="showTab('exams')">الامتحانات السابقة</button>
+      <button class="tab" data-go="home" aria-pressed="false">الرئيسية</button>
+      <button class="tab" data-go="lessons" aria-pressed="false">الدروس</button>
+      <button class="tab" data-go="summaries" aria-pressed="false">الملخصات</button>
+      <button class="tab" data-go="videos" aria-pressed="false">شرح الدروس بالفيديو</button>
+      <button class="tab" data-go="acts" aria-pressed="false">الأنشطة</button>
+      <button class="tab" data-go="exams" aria-pressed="false">الامتحانات السابقة</button>
     </nav>
   </div>
 </header>
 
 <main style="max-width:1100px;margin:0 auto;padding:28px 24px 48px">
 
-<div class="pane" data-pane="home">
+<div class="pane" data-tab="home">
   <section style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 24px;margin-bottom:24px">
     <h2 style="font-size:30px">أهلاً بكن في منصة مقرر البرمجة بلغة البايثون</h2>
     <p class="lead" style="font-size:18px;color:var(--navy);margin:0 0 10px">مرحباً بكن يا طالباتي في مقرر تقن 107.</p>
@@ -109,11 +110,11 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
 
   <div class="section-title">أقسام المنصة</div>
   <div class="grid">
-    <div class="box"><h3>الدروس</h3><p>شرح كل درس مع فيديو وملخص وأنشطة.</p><div class="links"><button class="btn" style="border:0;cursor:pointer" onclick="showTab('lessons')">ابدئي بالدروس</button></div></div>
-    <div class="box"><h3>الملخصات</h3><p>ملخص مختصر لكل درس للمراجعة السريعة.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('summaries')">عرض الملخصات</button></div></div>
-    <div class="box"><h3>شرح الدروس بالفيديو</h3><p>فيديوهات جاهزة تشاهدينها أكثر من مرة.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('videos')">مشاهدة الفيديوهات</button></div></div>
-    <div class="box"><h3>الأنشطة</h3><p>تدريبات مصنفة حسب مستواك.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('acts')">عرض الأنشطة</button></div></div>
-    <div class="box"><h3>الامتحانات السابقة</h3><p>نماذج من الامتحانات النهائية مع الحلول.</p><div class="links"><button class="btn ghost" style="cursor:pointer" onclick="showTab('exams')">عرض النماذج</button></div></div>
+    <div class="box"><h3>الدروس</h3><p>شرح كل درس مع فيديو وملخص وأنشطة.</p><div class="links"><button class="btn" style="border:0;cursor:pointer" data-go="lessons">ابدئي بالدروس</button></div></div>
+    <div class="box"><h3>الملخصات</h3><p>ملخص مختصر لكل درس للمراجعة السريعة.</p><div class="links"><button class="btn ghost" style="cursor:pointer" data-go="summaries">عرض الملخصات</button></div></div>
+    <div class="box"><h3>شرح الدروس بالفيديو</h3><p>فيديوهات جاهزة تشاهدينها أكثر من مرة.</p><div class="links"><button class="btn ghost" style="cursor:pointer" data-go="videos">مشاهدة الفيديوهات</button></div></div>
+    <div class="box"><h3>الأنشطة</h3><p>تدريبات مصنفة حسب مستواك.</p><div class="links"><button class="btn ghost" style="cursor:pointer" data-go="acts">عرض الأنشطة</button></div></div>
+    <div class="box"><h3>الامتحانات السابقة</h3><p>نماذج من الامتحانات النهائية مع الحلول.</p><div class="links"><button class="btn ghost" style="cursor:pointer" data-go="exams">عرض النماذج</button></div></div>
   </div>
 
   <div class="section-title">أنواع الأنشطة</div>
@@ -124,7 +125,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
   </div>
 </div>
 
-<div class="pane" data-pane="lessons">
+<div class="pane" data-tab="lessons">
   <h2>الدروس</h2>
   <p class="lead">اضغطي على كل درس لعرض الفيديو والملخص وأنشطته الثلاثة: إثرائي وتعزيزي وعلاجي.</p>
 
@@ -133,7 +134,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1FHOSGiUhHIkrbCgBda_GlG704x0U_GwJ/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/1f5777rtpIyYjXT9Zsqpi0zfzwXYAgcko/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1XWpPFWY4IOEQbYdBPHbQQE5G8sCHOvsD/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -142,7 +143,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="https://drive.google.com/file/d/1eVMh-rEOxnQICP2Klt3Mf4tdMz-AmMHd/view?usp=sharing" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1mmFJAZNu39RSAAT1xZZQs9atSuhQk_-R/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1h182LnXIn1fJouQdVyUxBFa1GX3cosaj/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/174DhRwgouZIFjUQ8Ium7vNyhDAuESz-e/view?usp=share_link" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1h182LnXIn1fJouQdVyUxBFa1GX3cosaj/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -151,7 +152,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/15nBPNqIKtPCFO14q9_dFklYDTYnXZfpL/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/1t3yvCN4H4OWzl_b8lWNUUOtblRu0BrV_/view?usp=share_link" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1U1dOvs3zo3zOjyhLAzSMbqCp-V8g3nRt/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -160,7 +161,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="https://drive.google.com/file/d/1sliCPBLOdK3mXdUAbiuU5HOTrr4BKVW0/view?usp=share_link" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1-14qLZ6T0wt-5_1yp5MkM64WUHxHroLP/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/1moIOfBqbXmnPH5yW0wqvoz4VaaNZlZK2/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/15P9RKK7Qtqrfbo58LD9mq0m7UMpReT-g/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -169,7 +170,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1oVLJqVjIeNEDvYeay9DpfO6xihXZ0t86/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/12N4xpXxdpfx8CMHYaK_czXWK6RYp0vke/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1rtWxF5JkLYwZ761Zde5iOQT3HgwlUMBs/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -178,7 +179,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1MyCqM_Osrgc70B47fyCx1bpLfLHRIMjz/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1M9cdBshEpzs7F3NrHURaCoj__LdeOsHm/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/1NKtqk8HXkefv6msWB57P_6JJ3c4tvPbW/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1M9cdBshEpzs7F3NrHURaCoj__LdeOsHm/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -187,7 +188,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1tc1Q-a_0Soc1_FzvOudh6_kvJmVFknXZ/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/18O96RXeQjH2CA4oo1nfhzdu84itykbzG/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1QI9CVF3tWhtzMXmai0zCSsrJN7T_u1NC/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -196,7 +197,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="https://drive.google.com/file/d/1A2XdUI0n-kAbfOe59o0JWAZmqwqWi9CG/view?usp=sharing" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1tW86EH4OZl_S_2wI2mCvXpWOcybYzCLh/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1OpvA33ktbcfGLpXQMz224vfeS99Kha3R/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/1EQ7IoM-0QEzfNjWhM41P_VqBr0RFo3aY/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1OpvA33ktbcfGLpXQMz224vfeS99Kha3R/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -205,7 +206,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="#">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1ydlnwklf-_H7JrKmRaT1W_l21mrJdXhC/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="#">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/1xz6k0LAY0bmSUbzApnRmnMHFqCcQOjKq/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1v0rGapN8eiVm35MNzjFMeoazCLRMSVdc/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -214,7 +215,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="https://drive.google.com/file/d/1T80r5d1o3hAiS5CCRt_UZOJpC3NXxXRB/view?usp=share_link" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1_UDrrWJRUh4s4fhKUY9gO06EKV_T7hQA/view?usp=sharing" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1k3PDRLKrudtES8k5m08vfwa9wC-hb550/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/1nwGhQ08s_KBMsyHvhd3pppG2POTSt3w9/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1k3PDRLKrudtES8k5m08vfwa9wC-hb550/view?usp=share_link" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 
@@ -223,12 +224,12 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     <div class="body">
       
       <div class="links"><a class="btn" href="https://drive.google.com/file/d/1Ic7XhBsWrofmkRwkJugCrqlxGdZ3Sj3A/view?usp=sharing" target="_blank" rel="noopener">فيديو الدرس</a><a class="btn ghost" href="https://drive.google.com/file/d/1vvgKUYdjnWnvSAoIs-eUEFJGnFMs8XtG/view?usp=share_link" target="_blank" rel="noopener">الملخص</a></div>
-      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="#">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1G8iMoTEjg8F4KKk68YIfSeyXJ_PesSu0/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
+      <div class="links"><span class="lbl">الأنشطة:</span><a class="tag t-en" href="https://drive.google.com/file/d/134sx40k2Nl6p491BvvLwCSK8ZKsxVvo3/view?usp=sharing" target="_blank" rel="noopener">إثرائي</a><a class="tag t-re" href="#">تعزيزي</a><a class="tag t-rm" href="https://drive.google.com/file/d/1G8iMoTEjg8F4KKk68YIfSeyXJ_PesSu0/view?usp=sharing" target="_blank" rel="noopener">علاجي</a></div>
     </div>
   </details>
 </div>
 
-<div class="pane" data-pane="summaries">
+<div class="pane" data-tab="summaries">
   <h2>الملخصات</h2>
   <p class="lead">ملخصات مختصرة لكل درس للمراجعة السريعة قبل الاختبار.</p>
   <div class="grid">
@@ -246,7 +247,7 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
   </div>
 </div>
 
-<div class="pane" data-pane="videos">
+<div class="pane" data-tab="videos">
   <h2>شرح الدروس بالفيديو</h2>
   <p class="lead">ملفات الفيديو الجاهزة لكل درس، يمكنك مشاهدتها أكثر من مرة.</p>
   <div class="grid">
@@ -264,34 +265,34 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
   </div>
 </div>
 
-<div class="pane" data-pane="acts">
+<div class="pane" data-tab="acts">
   <h2>الأنشطة</h2>
   <p class="lead">لكل درس ثلاثة أنشطة: إثرائي للمتفوقات، وتعزيزي للتدريب، وعلاجي للمراجعة. اختاري التصنيف من الأزرار أدناه.</p>
   <div class="chips" role="group" aria-label="تصفية الأنشطة">
-    <button class="chip" onclick="showFilter('all')">الكل</button>
-    <button class="chip" onclick="showFilter('enrich')">إثرائية</button>
-    <button class="chip" onclick="showFilter('reinf')">تعزيزية</button>
-    <button class="chip" onclick="showFilter('remed')">علاجية</button>
+    <button class="chip" data-filter="all">الكل</button>
+    <button class="chip" data-filter="enrich">إثرائية</button>
+    <button class="chip" data-filter="reinf">تعزيزية</button>
+    <button class="chip" data-filter="remed">علاجية</button>
   </div>
 
-  <div class="group" data-group="enrich">
+  <div class="pane" data-f="enrich">
     <div class="section-title">أنشطة إثرائية</div>
     <div class="grid">
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 1</span><h3>الخوارزميات</h3><p>تصميم خوارزمية وخريطة تدفقية لترتيب ثلاثة أرقام تصاعدياً.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 2</span><h3>أنواع البيانات</h3><p>برنامج يحدد نوع كل قيمة يدخلها المستخدم.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 3</span><h3>المتغيرات والثوابت</h3><p>برنامج يحسب مساحة الدائرة باستخدام ثابت π.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 4</span><h3>الإدخال والإخراج</h3><p>فاتورة بسيطة تطبع الاسم والمبلغ بتنسيق منظم.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 5</span><h3>الدوال المضمنة للأرقام</h3><p>برنامج يجمع أرقام عدد صحيح ويعرض ناتج الجمع باستخدام sum().</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 6</span><h3>العمليات الحسابية</h3><p>حساب الأس والجذر التربيعي لعدد وتقريب النتيجة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 7</span><h3>العوامل المنطقية</h3><p>برنامج يتحقق هل السنة كبيسة باستخدام العوامل المنطقية.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 8</span><h3>القوائم</h3><p>برنامج يحذف العناصر المكررة من قائمة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 9</span><h3>الدوال الخاصة بالقوائم</h3><p>برنامج يدير قائمة أسماء: إضافة وحذف وترتيب.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 10</span><h3>الجملة الشرطية if</h3><p>برنامج يصنف العمر (طفل، شاب، بالغ) بجمل if و elif و else.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-en">إثرائي · الدرس 11</span><h3>الجملة التكرارية</h3><p>برنامج يطبع جدول الضرب لعدد يدخله المستخدم باستخدام for - in range.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 1</span><h3>الخوارزميات</h3><p>تصميم خوارزمية وخريطة تدفقية لترتيب ثلاثة أرقام تصاعدياً.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1f5777rtpIyYjXT9Zsqpi0zfzwXYAgcko/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 2</span><h3>أنواع البيانات</h3><p>برنامج يحدد نوع كل قيمة يدخلها المستخدم.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/174DhRwgouZIFjUQ8Ium7vNyhDAuESz-e/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 3</span><h3>المتغيرات والثوابت</h3><p>برنامج يحسب مساحة الدائرة باستخدام ثابت π.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1t3yvCN4H4OWzl_b8lWNUUOtblRu0BrV_/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 4</span><h3>الإدخال والإخراج</h3><p>فاتورة بسيطة تطبع الاسم والمبلغ بتنسيق منظم.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1moIOfBqbXmnPH5yW0wqvoz4VaaNZlZK2/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 5</span><h3>الدوال المضمنة للأرقام</h3><p>برنامج يجمع أرقام عدد صحيح ويعرض ناتج الجمع باستخدام sum().</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/12N4xpXxdpfx8CMHYaK_czXWK6RYp0vke/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 6</span><h3>العمليات الحسابية</h3><p>حساب الأس والجذر التربيعي لعدد وتقريب النتيجة.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1NKtqk8HXkefv6msWB57P_6JJ3c4tvPbW/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 7</span><h3>العوامل المنطقية</h3><p>برنامج يتحقق هل السنة كبيسة باستخدام العوامل المنطقية.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/18O96RXeQjH2CA4oo1nfhzdu84itykbzG/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 8</span><h3>القوائم</h3><p>برنامج يحذف العناصر المكررة من قائمة.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1EQ7IoM-0QEzfNjWhM41P_VqBr0RFo3aY/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 9</span><h3>الدوال الخاصة بالقوائم</h3><p>برنامج يدير قائمة أسماء: إضافة وحذف وترتيب.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1xz6k0LAY0bmSUbzApnRmnMHFqCcQOjKq/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 10</span><h3>الجملة الشرطية if</h3><p>برنامج يصنف العمر (طفل، شاب، بالغ) بجمل if و elif و else.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1nwGhQ08s_KBMsyHvhd3pppG2POTSt3w9/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-en">إثرائي · الدرس 11</span><h3>الجملة التكرارية</h3><p>برنامج يطبع جدول الضرب لعدد يدخله المستخدم باستخدام for - in range.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/134sx40k2Nl6p491BvvLwCSK8ZKsxVvo3/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
     </div>
   </div>
 
-  <div class="group" data-group="reinf">
+  <div class="pane" data-f="reinf">
     <div class="section-title">أنشطة تعزيزية</div>
     <div class="grid">
       <div class="box"><span class="tag t-re">تعزيزي · الدرس 1</span><h3>الخرائط التدفقية</h3><p>تمثيل خطوات حل مسألة بسيطة بخريطة تدفقية.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
@@ -308,25 +309,25 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
     </div>
   </div>
 
-  <div class="group" data-group="remed">
+  <div class="pane" data-f="remed">
     <div class="section-title">أنشطة علاجية</div>
     <div class="grid">
-      <div class="box"><span class="tag t-rm">علاجي · الدرس 1</span><h3>الخوارزميات والخرائط التدفقية</h3><p>مراجعة رموز الخريطة: البداية والنهاية والشرط والمعالجة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 1</span><h3>الخوارزميات والخرائط التدفقية</h3><p>مراجعة رموز الخريطة: البداية والنهاية والشرط والمعالجة.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1XWpPFWY4IOEQbYdBPHbQQE5G8sCHOvsD/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
       <div class="box"><span class="tag t-rm">علاجي · الدرس 2</span><h3>أنواع البيانات</h3><p>مراجعة أنواع البيانات مع أمثلة من الحياة اليومية.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1h182LnXIn1fJouQdVyUxBFa1GX3cosaj/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-rm">علاجي · الدرس 3</span><h3>المتغيرات والثوابت</h3><p>مراجعة قواعد تسمية المتغيرات وأمثلة عليها.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-rm">علاجي · الدرس 4</span><h3>الإدخال والإخراج</h3><p>تدريب على تحويل القيمة المدخلة من نص إلى رقم.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-rm">علاجي · الدرس 5</span><h3>الدوال المضمنة للأرقام</h3><p>مراجعة الفرق بين الدوال round() و abs() مع أمثلة.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 3</span><h3>المتغيرات والثوابت</h3><p>مراجعة قواعد تسمية المتغيرات وأمثلة عليها.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1U1dOvs3zo3zOjyhLAzSMbqCp-V8g3nRt/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 4</span><h3>الإدخال والإخراج</h3><p>تدريب على تحويل القيمة المدخلة من نص إلى رقم.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/15P9RKK7Qtqrfbo58LD9mq0m7UMpReT-g/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 5</span><h3>الدوال المضمنة للأرقام</h3><p>مراجعة الفرق بين الدوال round() و abs() مع أمثلة.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1rtWxF5JkLYwZ761Zde5iOQT3HgwlUMBs/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
       <div class="box"><span class="tag t-rm">علاجي · الدرس 6</span><h3>العمليات الحسابية</h3><p>مراجعة الفرق بين / و // و % مع أمثلة محلولة.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1M9cdBshEpzs7F3NrHURaCoj__LdeOsHm/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-rm">علاجي · الدرس 7</span><h3>العوامل المنطقية</h3><p>مراجعة الفرق بين True و False في الشروط المنطقية.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 7</span><h3>العوامل المنطقية</h3><p>مراجعة الفرق بين True و False في الشروط المنطقية.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1QI9CVF3tWhtzMXmai0zCSsrJN7T_u1NC/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
       <div class="box"><span class="tag t-rm">علاجي · الدرس 8</span><h3>القوائم</h3><p>مراجعة الفهرسة والوصول إلى عناصر القائمة بالرقم.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1OpvA33ktbcfGLpXQMz224vfeS99Kha3R/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
-      <div class="box"><span class="tag t-rm">علاجي · الدرس 9</span><h3>الدوال الخاصة بالقوائم</h3><p>مراجعة الفرق بين append() و insert() مع مثال واضح.</p><div class="links"><a class="btn ghost" href="#">ملف النشاط</a></div></div>
+      <div class="box"><span class="tag t-rm">علاجي · الدرس 9</span><h3>الدوال الخاصة بالقوائم</h3><p>مراجعة الفرق بين append() و insert() مع مثال واضح.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1v0rGapN8eiVm35MNzjFMeoazCLRMSVdc/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
       <div class="box"><span class="tag t-rm">علاجي · الدرس 10</span><h3>الجملة الشرطية if</h3><p>مراجعة الفرق بين if و elif و else وترتيب تنفيذها.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1k3PDRLKrudtES8k5m08vfwa9wC-hb550/view?usp=share_link" target="_blank" rel="noopener">ملف النشاط</a></div></div>
       <div class="box"><span class="tag t-rm">علاجي · الدرس 11</span><h3>الجملة التكرارية</h3><p>مراجعة معنى range(start, stop) ولماذا لا يشمل stop.</p><div class="links"><a class="btn ghost" href="https://drive.google.com/file/d/1G8iMoTEjg8F4KKk68YIfSeyXJ_PesSu0/view?usp=sharing" target="_blank" rel="noopener">ملف النشاط</a></div></div>
     </div>
   </div>
 </div>
 
-<div class="pane" data-pane="exams">
+<div class="pane" data-tab="exams">
   <h2>الامتحانات النهائية السابقة</h2>
   <p class="lead">نماذج من الاختبارات النهائية السابقة مع الحلول للمراجعة والتدريب.</p>
   <details class="card" open="">
@@ -354,26 +355,37 @@ h2{color:var(--navy);margin:0 0 6px;font-size:26px;font-weight:800}
 
 </div>
 
+
 <script>
-function showTab(name){
-  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.dataset.pane === name));
-  document.querySelectorAll('nav.tabs .tab').forEach(b => {
-    const on = b.getAttribute('onclick') === "showTab('" + name + "')";
-    b.classList.toggle('on', on);
-    b.setAttribute('aria-pressed', on);
+(function(){
+  var state = {tab:'home', act:'all'};
+  function render(){
+    document.querySelectorAll('.pane[data-tab]').forEach(function(el){
+      el.hidden = el.getAttribute('data-tab') !== state.tab;
+    });
+    document.querySelectorAll('.pane[data-f]').forEach(function(el){
+      var f = el.getAttribute('data-f');
+      el.hidden = !(state.act === 'all' || state.act === f);
+    });
+    document.querySelectorAll('[data-go]').forEach(function(b){
+      var on = b.getAttribute('data-go') === state.tab;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('[data-filter]').forEach(function(b){
+      var on = b.getAttribute('data-filter') === state.act;
+      b.classList.toggle('on', on);
+    });
+  }
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ state.tab = b.getAttribute('data-go'); render(); window.scrollTo({top:0,behavior:'smooth'}); });
   });
-  window.scrollTo(0, 0);
-}
-function showFilter(f){
-  document.querySelectorAll('.group').forEach(g => {
-    g.classList.toggle('on', f === 'all' || g.dataset.group === f);
+  document.querySelectorAll('[data-filter]').forEach(function(b){
+    b.addEventListener('click', function(){ state.act = b.getAttribute('data-filter'); render(); });
   });
-  document.querySelectorAll('.chip').forEach(c => {
-    c.classList.toggle('on', c.getAttribute('onclick') === "showFilter('" + f + "')");
-  });
-}
-showTab('home');
-showFilter('all');
+  render();
+})();
 </script>
+
 </body>
 </html>
